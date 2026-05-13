@@ -9,6 +9,11 @@
 
 > 英文版请见 [`README.md`](./README.md)。
 
+![ci](https://github.com/Ding-Ye/learn-get-shit-done/actions/workflows/ci.yml/badge.svg)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Ding-Ye/learn-get-shit-done.svg)](https://pkg.go.dev/github.com/Ding-Ye/learn-get-shit-done)
+![Go 1.23+](https://img.shields.io/badge/go-1.23%2B-00ADD8)
+![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-blue)
+
 ## 为什么写这个仓库
 
 上游项目体量大、跨语言、以 TypeScript 为主。如果你从来没读过一个元提示词框架,

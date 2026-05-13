@@ -12,6 +12,11 @@ the upstream system.
 
 > Looking for the Chinese version? See [`README.zh.md`](./README.zh.md).
 
+![ci](https://github.com/Ding-Ye/learn-get-shit-done/actions/workflows/ci.yml/badge.svg)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Ding-Ye/learn-get-shit-done.svg)](https://pkg.go.dev/github.com/Ding-Ye/learn-get-shit-done)
+![Go 1.23+](https://img.shields.io/badge/go-1.23%2B-00ADD8)
+![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-blue)
+
 ## Why this exists
 
 The upstream project is large, polyglot, and TypeScript-heavy. If you've never
