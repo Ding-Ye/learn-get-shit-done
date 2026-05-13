@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>learn-get-shit-done</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fafafa;
+        --fg: #111;
+        --muted: #555;
+        --accent: #2b6cb0;
+        --card: #fff;
+        --border: #e2e8f0;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f1115;
+          --fg: #e6e6e6;
+          --muted: #9aa0a6;
+          --accent: #79b8ff;
+          --card: #161a22;
+          --border: #2a2f3a;
+        }
+      }
+      html, body { background: var(--bg); color: var(--fg); margin: 0; padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      main { max-width: 880px; margin: 0 auto; padding: 32px 24px 64px; }
+      h1 { font-size: 28px; margin: 0 0 8px; }
+      h2 { margin-top: 32px; font-size: 18px; }
+      p { line-height: 1.55; color: var(--muted); }
+      .lang { float: right; font-size: 14px; }
+      .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+        padding: 14px 16px; }
+      .card a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .card a:hover { text-decoration: underline; }
+      .card p { margin: 6px 0 0; font-size: 14px; }
+      code { background: rgba(127, 127, 127, 0.15); padding: 1px 5px; border-radius: 4px; font-size: 0.95em; }
+      footer { margin-top: 48px; font-size: 13px; color: var(--muted); }
+      footer a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="lang"><a href="#" onclick="toggleLang();return false;">EN / 中文</a></span>
+      <h1>learn-get-shit-done</h1>
+      <p data-en="A hands-on Go learning companion to the upstream gsd-build/get-shit-done meta-prompting framework. One mechanism per chapter, ~100 lines of Go each."
+         data-zh="上游 gsd-build/get-shit-done 元提示词框架的 Go 学习版。一章一个机制,每章约百行 Go 代码。">
+        A hands-on Go learning companion to the upstream gsd-build/get-shit-done
+        meta-prompting framework. One mechanism per chapter, ~100 lines of Go each.
+      </p>
+
+      <h2 data-en="Chapters" data-zh="章节">Chapters</h2>
+      <div class="grid" id="chapters"></div>
+
+      <h2 data-en="Appendices" data-zh="附录">Appendices</h2>
+      <div class="grid">
+        <div class="card">
+          <a href="../docs/en/s_full-integration.md" data-en="End-to-end integration" data-zh="端到端串讲">End-to-end integration</a>
+          <p data-en="Trace a single user prompt all the way through the eight mechanisms."
+             data-zh="跟踪一条用户输入,穿过全部 8 个机制。">Trace a single user prompt all the way through the eight mechanisms.</p>
+        </div>
+        <div class="card">
+          <a href="../docs/en/appendix-a-meta-prompting.md" data-en="A. Meta-prompting" data-zh="A. 元提示词">A. Meta-prompting</a>
+          <p data-en="The shape of a Claude Code framework." data-zh="Claude Code 框架的形状。">The shape of a Claude Code framework.</p>
+        </div>
+        <div class="card">
+          <a href="../docs/en/appendix-b-upstream-map.md" data-en="B. Upstream map" data-zh="B. 上游源码地图">B. Upstream map</a>
+          <p data-en="Where to read what in the upstream tree." data-zh="去上游仓库的哪里读哪些文件。">Where to read what in the upstream tree.</p>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          <a href="../README.md">README</a> · <a href="../README.zh.md">中文 README</a> ·
+          <a href="https://github.com/Ding-Ye/learn-get-shit-done">GitHub</a>
+        </p>
+        <p>Apache-2.0 · upstream commit <code>ba625c0</code></p>
+      </footer>
+    </main>
+
+    <script>
+      const chapters = [
+        ["s01-skill-loader", "Skill loader", "Skill 加载器", "Parse a markdown skill into a runtime object.", "把 markdown skill 解析成运行时对象。"],
+        ["s02-command-parser", "Command parser", "命令解析", "Parse /gsd <name> [args] into a structured invocation.", "把 /gsd 斜杠命令解析成结构。"],
+        ["s03-context-engine", "Context engine", "上下文引擎", "Load and render context templates from disk.", "从磁盘加载并渲染上下文模板。"],
+        ["s04-prompt-assembler", "Prompt assembler", "提示词组装", "Combine command + context + agent + user input.", "拼接 command + context + agent + user input。"],
+        ["s05-hook-runner", "Hook runner", "Hook 执行器", "Pre/post hooks: redact, truncate, log.", "Pre/post Hook:脱敏、截断、日志。"],
+        ["s06-agent-dispatcher", "Agent dispatcher", "Agent 派发", "Resolve @agent and dispatch via Transport.", "解析 @agent 并通过 Transport 派发。"],
+        ["s07-workflow-runner", "Workflow runner", "Workflow 执行器", "Chain commands declared in a workflow file.", "按 workflow 文件串起多条命令。"],
+        ["s08-spec-driven-planner", "Spec-driven planner", "Spec 规划器", "Turn a spec into phases and execute one.", "把 spec 拆成 phase,执行其中一个。"],
+      ];
+      const grid = document.getElementById("chapters");
+      for (const [slug, en, zh, enDesc, zhDesc] of chapters) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<a href="../docs/en/${slug}.md" data-en="${en}" data-zh="${zh}">${en}</a>
+          <p data-en="${enDesc}" data-zh="${zhDesc}">${enDesc}</p>`;
+        grid.appendChild(card);
+      }
+      let lang = "en";
+      function toggleLang() {
+        lang = lang === "en" ? "zh" : "en";
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-en]").forEach(el => {
+          el.textContent = el.getAttribute("data-" + lang);
+        });
+        document.querySelectorAll("a[href*='/docs/en/']").forEach(a => {
+          a.href = a.getAttribute("href").replace("/docs/" + (lang === "en" ? "zh" : "en") + "/", "/docs/" + lang + "/");
+        });
+      }
+    </script>
+  </body>
+</html>

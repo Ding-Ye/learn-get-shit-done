@@ -1,0 +1,17 @@
+# Local research/working area (must never be committed)
+.learn/
+
+# Go build artifacts
+*.exe
+*.test
+*.out
+*.prof
+/bin/
+/dist/
+
+# Editor & OS noise
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
